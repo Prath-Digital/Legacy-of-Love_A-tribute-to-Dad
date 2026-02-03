@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      base: '/Legacy-of-Love_A-tribute-to-Dad/', // Add this line
     };
 });
