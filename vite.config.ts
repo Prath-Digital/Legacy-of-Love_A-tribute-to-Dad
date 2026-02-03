@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
+      base: '/Legacy-of-Love_A-tribute-to-Dad/',
       server: {
         port: 3000,
         host: '0.0.0.0',
@@ -18,7 +19,6 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      },
-      base: '/Legacy-of-Love_A-tribute-to-Dad/', // Add this line
+      }
     };
 });
