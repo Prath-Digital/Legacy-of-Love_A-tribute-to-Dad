@@ -1,8 +1,6 @@
 
 import { TimelineEvent, MemoryItem } from './types';
 
-const BASE_URL = import.meta.env.BASE_URL;
-
 export const TARGET_DATE = "2026-02-04T00:00:00";
 
 export const TIMELINE_DATA: TimelineEvent[] = [
@@ -40,70 +38,70 @@ export const MEMORIES_DATA: MemoryItem[] = [
   {
     id: 1,
     type: 'video',
-    url: `${BASE_URL}MEMORIES_DATA/You as a tower in my life.mp4`,
+    url: 'MEMORIES_DATA/You as a tower in my life.mp4',
     caption: 'The Best Head Massage!',
     size: 'large'
   },
   {
     id: 2,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/We in car.jpeg`,
+    url: 'MEMORIES_DATA/We in car.jpeg',
     caption: 'Road Trip Smiles',
     size: 'medium'
   },
   {
     id: 3,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/Me as footballer.jpeg`,
+    url: 'MEMORIES_DATA/Me as footballer.jpeg',
     caption: 'Our Little Champion',
     size: 'small'
   },
   {
     id: 4,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/Birthday.jpeg`,
+    url: 'MEMORIES_DATA/Birthday.jpeg',
     caption: 'Sweetest Celebrations',
     size: 'medium'
   },
   {
     id: 5,
     type: 'video',
-    url: `${BASE_URL}MEMORIES_DATA/You with Hetsh Eating Pizza.mp4`,
+    url: 'MEMORIES_DATA/You with Hetsh Eating Pizza.mp4',
     caption: 'Pizza Time is the Best Time',
     size: 'small'
   },
   {
     id: 6,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/Our family.jpeg`,
+    url: 'MEMORIES_DATA/Our family.jpeg',
     caption: 'Cuddles and Giggles',
     size: 'medium'
   },
   {
     id: 7,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/We with mom and Daksh.jpeg`,
+    url: 'MEMORIES_DATA/We with mom and Daksh.jpeg',
     caption: 'The Whole Crew Outing',
     size: 'large'
   },
   {
     id: 8,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/We in bus.jpeg`,
+    url: 'MEMORIES_DATA/We in bus.jpeg',
     caption: 'Too Cute in Panda!',
     size: 'small'
   },
   {
     id: 9,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/You thinking about me.jpeg`,
+    url: 'MEMORIES_DATA/You thinking about me.jpeg',
     caption: 'Quiet Moments Together',
     size: 'medium'
   },
   {
     id: 10,
     type: 'image',
-    url: `${BASE_URL}MEMORIES_DATA/We with Daksh.jpeg`,
+    url: 'MEMORIES_DATA/We with Daksh.jpeg',
     caption: 'Forever Your Boys',
     size: 'small'
   }
