@@ -1,15 +1,27 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MEMORIES_DATA } from '../constants';
 import { Play, Image as ImageIcon, Heart, X } from 'lucide-react';
+import PasswordModal from './PasswordModal';
 
 const MemoriesSection: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<number | null>(null);
+  const [isUnlocked, setIsUnlocked] = useState(false);
   const item = selectedItem ? MEMORIES_DATA.find(m => m.id === selectedItem) : null;
+
+  // Check if memories are already unlocked on component mount
+  useEffect(() => {
+    const unlocked = sessionStorage.getItem('memoriesUnlocked') === 'true';
+    setIsUnlocked(unlocked);
+  }, []);
 
   return (
     <section className="py-32 px-6 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Password Modal - Show if not unlocked */}
+      <AnimatePresence>
+        {!isUnlocked && <PasswordModal onUnlock={() => setIsUnlocked(true)} />}
+      </AnimatePresence>
       {/* Section Header */}
       <div className="text-center mb-24 relative">
         <motion.div
@@ -30,7 +42,9 @@ const MemoriesSection: React.FC = () => {
       </div>
 
       {/* Grid Container */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[280px] md:auto-rows-[350px]">
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[280px] md:auto-rows-[350px] transition-all duration-500 ${
+        !isUnlocked ? 'blur-md opacity-60 pointer-events-none' : ''
+      }`}>
         {MEMORIES_DATA.map((memoryItem, index) => (
           <motion.div
             key={memoryItem.id}
