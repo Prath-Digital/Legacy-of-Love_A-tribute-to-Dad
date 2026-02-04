@@ -1,6 +1,6 @@
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { MEMORIES_DATA } from '../constants';
 import { Play, Image as ImageIcon, Heart, X } from 'lucide-react';
 import PasswordModal from './PasswordModal';
@@ -10,17 +10,23 @@ const MemoriesSection: React.FC = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const item = selectedItem ? MEMORIES_DATA.find(m => m.id === selectedItem) : null;
 
+  // Ref to detect when the section scrolls into view
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const sectionInView = useInView(sectionRef, { once: true, margin: '-200px' });
+
   // Check if memories are already unlocked on component mount
   useEffect(() => {
     const unlocked = sessionStorage.getItem('memoriesUnlocked') === 'true';
     setIsUnlocked(unlocked);
   }, []);
 
+  const lockActive = sectionInView && !isUnlocked;
+
   return (
-    <section className="py-32 px-6 max-w-7xl mx-auto relative overflow-hidden">
-      {/* Password Modal - Show if not unlocked */}
+    <section ref={sectionRef} className="py-32 px-6 max-w-7xl mx-auto relative overflow-hidden">
+      {/* Password Modal - Show only when user reaches section and it's locked */}
       <AnimatePresence>
-        {!isUnlocked && <PasswordModal onUnlock={() => setIsUnlocked(true)} />}
+        {lockActive && <PasswordModal onUnlock={() => setIsUnlocked(true)} />}
       </AnimatePresence>
       {/* Section Header */}
       <div className="text-center mb-24 relative">
@@ -43,7 +49,7 @@ const MemoriesSection: React.FC = () => {
 
       {/* Grid Container */}
       <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-[280px] md:auto-rows-[350px] transition-all duration-500 ${
-        !isUnlocked ? 'blur-md opacity-60 pointer-events-none' : ''
+        lockActive ? 'blur-md opacity-60 pointer-events-none' : ''
       }`}>
         {MEMORIES_DATA.map((memoryItem, index) => (
           <motion.div
